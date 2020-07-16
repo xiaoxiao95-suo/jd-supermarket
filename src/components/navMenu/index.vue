@@ -3,14 +3,22 @@
        <div class="navTop">
           <ul class="nav-left">
               <li>
-                <a>
+                <a id='aaadress'>
                     <i class="el-icon-location-outline" style="color:#e1251b"></i>
                     <span>上海</span>
                 </a>
                 <div class="drop-down-adress">
-                    <ul>
-                        <li v-for="(item,index) in adresses" :key="index">{{item}}</li>
+                    <ul class="adress">
+                        <li v-for="(item,index) in adresses1" :key="index">{{item}}</li>
                     </ul>
+                    <div class="inner-split"></div>
+                    <div class="spercial_adress">
+                        <p>地区专享版本</p>
+                        <ul class="adress">
+                           <li v-for="(val,i) in adresses2" :key="i">{{val}}</li>
+                        </ul>
+                    </div>
+                    ffffffff
                 </div>
               </li>
           </ul>
@@ -29,12 +37,19 @@
     </div>
 </template>
 <script>
+$(function(){
+    $('#aaadress').click(function(){
+        alert('nonono')
+    })
+})
 export default {
   name: 'NavMenu',
   data () {
     return {
-        adresses: ["北京","上海","重庆","天津","河北","江苏","浙江",
-        "山西","山东","安徽","河南","湖北","湖南"]
+        adresses1: ["北京","上海","重庆","天津","河北","江苏","浙江",
+        "山西","山东","安徽","河南","湖北","湖南","新疆","四川","西藏",
+        "钓鱼岛","台湾","黑龙江","辽宁","吉林","甘肃","贵州","云南","广西","广东","海外"],
+        adresses2: ["中国港澳","中国台湾","京东全球"]
     }
   }
 }
@@ -57,10 +72,11 @@ a {
     display: flex;
     justify-content: space-between;
 }
- .navTop ul,li {
-    display: inline-block;
-}
-.nav-left,.nav-left li {
+//  .navTop li {
+//     // float: left;
+//     display: inline-block;
+// }
+.nav-left,.nav-left>li {
     width: 58px;
     height: 100%;
 }
@@ -68,6 +84,31 @@ a {
     position: relative;
     width: 300px;
     z-index: 1000;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.adress {
+    display: flex;
+    flex-flow: wrap;
+}
+.drop-down-adress ul:first-child li {
+    // margin:0 18px 0 18px;
+    width: 20%;
+}
+.drop-down-adress ul:nth-child(2) li {
+    // margin: 0 40px 0 18px;
+    // float: left;
+    width: 40%;
+}
+.inner-split {
+    margin: auto;
+    width: 262px;
+    height: 0;
+    border-bottom: 1px dotted #eee;
+}
+.nav-right li {
+    display: inline;
 }
  .nav-right li:nth-child(n+2) {
     margin-left: 10px;
