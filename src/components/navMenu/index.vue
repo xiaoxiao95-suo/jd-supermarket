@@ -5,11 +5,11 @@
               <li>
                 <a id='aaadress'>
                     <i class="el-icon-location-outline" style="color:#e1251b"></i>
-                    <span>上海</span>
+                    <span><a href="javascript:;">上海</a></span>
                 </a>
-                <div class="drop-down-adress">
+                <div class="drop-down-adress" style="display:none">
                     <ul class="adress">
-                        <li v-for="(item,index) in adresses1" :key="index">{{item}}</li>
+                        <li v-for="(item,index) in adresses1" :key="index"><a href="javascript:;">{{item}}</a></li>
                     </ul>
                     <div class="inner-split"></div>
                     <div class="spercial_adress">
@@ -37,10 +37,28 @@
     </div>
 </template>
 <script>
-$(function(){
-    $('#aaadress').click(function(){
-        alert('nonono')
+$(function() {
+    // let isShow = false
+    $(".nav-left").mouseover(function() {
+        $(".drop-down-adress").show()
+        $(".nav-left>li").css({
+            "background-color": "white",
+            "border": "1px solid black"
+        })
+
     })
+    // $(".nav-left").mouseout(function() {
+    //     $(".drop-down-adress").hide()
+    //     $(".nav-left").css("background-color","#e3e4e5")
+    // })
+    $('.drop-down-adress a').click(function() {
+        let $this =$(this)
+        let cityName=$this.text()
+        $('#aaadress span').text(cityName)
+        $(".drop-down-adress").hide()
+
+    })
+
 })
 export default {
   name: 'NavMenu',
@@ -72,33 +90,24 @@ a {
     display: flex;
     justify-content: space-between;
 }
-//  .navTop li {
-//     // float: left;
-//     display: inline-block;
-// }
-.nav-left,.nav-left>li {
+.nav-left {
     width: 58px;
     height: 100%;
+    position: relative;
+    z-index: 1000;
 }
 .drop-down-adress{
-    position: relative;
     width: 300px;
-    z-index: 1000;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    background-color: white;
 }
 .adress {
     display: flex;
     flex-flow: wrap;
 }
 .drop-down-adress ul:first-child li {
-    // margin:0 18px 0 18px;
     width: 20%;
 }
 .drop-down-adress ul:nth-child(2) li {
-    // margin: 0 40px 0 18px;
-    // float: left;
     width: 40%;
 }
 .inner-split {
